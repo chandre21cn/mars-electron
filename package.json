@@ -1,0 +1,38 @@
+{
+    "name": "@mars/electron",
+    "version": "1.0.0",
+    "main": "./dist/index.js",
+    "types": "./dist/index.d.ts",
+    "private": true,
+    "exports": {
+        ".": {
+            "types": "./dist/index.d.ts",
+            "import": "./dist/index.js",
+            "require": "./dist/index.js"
+        }
+    },
+    "scripts": {
+        "clean": "rm -rf dist",
+        "build": "yarn clean && tsc -p tsconfig.json && echo '{\"type\": \"commonjs\"}' > dist/package.json && cat src/index.d.ts >> dist/index.d.ts"
+    },
+    "dependencies": {
+        "cbor": "^10.0.12",
+        "dayjs": "^1.11.20",
+        "fs-extra": "^11.3.5",
+        "node-cron": "^4.2.1",
+        "ofetch": "^1.5.1",
+        "reflect-metadata": "^0.2.2"
+    },
+    "devDependencies": {
+        "electron": "*",
+        "@types/node": "^22.19.1",
+        "typescript": "^5.9.3"
+    },
+    "peerDependencies": {
+        "electron": "*",
+        "typescript": "*",
+        "cbor": "*",
+        "dayjs": "*",
+        "ofetch": "*"
+    }
+}
