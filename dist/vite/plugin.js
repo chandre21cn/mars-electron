@@ -69,7 +69,7 @@ function VitePluginBundlePack(options) {
             const distPath = viteConfig.root;
             console.log(`[pack] 正在打包并加密资源包`);
             const files = findAllFiles(distPath);
-            const fileBuffer = compress(files, bundleKey);
+            const fileBuffer = compress(files, Buffer.from(bundleKey, 'base64'));
             console.log(`[pack] 正在清空资源文件目录: ${distPath}`);
             fs_extra_1.default.emptyDirSync(distPath);
             fs_extra_1.default.ensureDirSync(distPath);

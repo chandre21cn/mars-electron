@@ -35,7 +35,7 @@ function findAllFiles(dirPath: string, fileMap: Record<string, string> = {}) {
  * @param fileMap 文件列表
  * @param key 密钥
  */
-function compress(fileMap: Record<string, string>, key: string): Buffer {
+function compress(fileMap: Record<string, string>, key: Buffer): Buffer {
     try {
         const zipInput = {}
         for (const [key, filePath] of Object.entries(fileMap)) {
@@ -74,7 +74,7 @@ export function VitePluginBundlePack(options?: BundlePackOptions): Plugin {
             const distPath = viteConfig.root
             console.log(`[pack] 正在打包并加密资源包`);
             const files = findAllFiles(distPath)
-            const fileBuffer = compress(files, bundleKey)
+            const fileBuffer = compress(files, Buffer.from(bundleKey, 'base64'))
 
             console.log(`[pack] 正在清空资源文件目录: ${ distPath }`);
             fs.emptyDirSync(distPath); 

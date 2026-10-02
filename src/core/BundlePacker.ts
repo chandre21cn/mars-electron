@@ -13,7 +13,7 @@ export interface BundleUnPackOptions {
 /**
  * 解压文件
  */
-function decompress(filepath: string, key: string) {
+function decompress(filepath: string, key: Buffer) {
     const fileBuffer = fs.readFileSync(filepath)
     const iv = fileBuffer.subarray(0, 12)
     const tag = fileBuffer.subarray(12, 28)
@@ -34,7 +34,7 @@ export function unpack({ name, key }: BundleUnPackOptions) {
         throw new Error(`file not found: ${ file }`);
     }
     try {
-        return decompress(file, key)
+        return decompress(file, Buffer.from(key, 'base64'))
     } catch(error) {
         throw new Error(`资源包解码失败`)
     }

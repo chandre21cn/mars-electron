@@ -31,7 +31,7 @@ function unpack({ name, key }) {
         throw new Error(`file not found: ${file}`);
     }
     try {
-        return decompress(file, key);
+        return decompress(file, Buffer.from(key, 'base64'));
     }
     catch (error) {
         throw new Error(`资源包解码失败`);
