@@ -27,14 +27,14 @@
     "devDependencies": {
         "@types/fs-extra": "^11.0.4",
         "@types/node": "^22.19.1",
-        "electron": "^39.2.6",
-        "typescript": "^5.9.3",
-        "vite": "*"
+        "typescript": "^5.9.3"
     },
     "peerDependencies": {
         "cbor": "*",
         "dayjs": "*",
+        "electron": "*",
         "ofetch": "*",
-        "typescript": "*"
+        "typescript": "*",
+        "vite": "*"
     }
 }
