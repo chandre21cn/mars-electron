@@ -1,0 +1,12 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "outDir": "./dist/vite",
+    "rootDir": "./src/vite",
+    "declaration": true,
+    "composite": false
+  },
+  "include": [
+    "src/vite/plugin.ts"
+  ]
+}

@@ -9,11 +9,16 @@
             "types": "./dist/index.d.ts",
             "import": "./dist/index.js",
             "require": "./dist/index.js"
+        },
+        "./vite": {
+            "types": "./dist/vite/plugin.d.ts",
+            "import": "./dist/vite/plugin.js",
+            "require": "./dist/vite/plugin.js"
         }
     },
     "scripts": {
         "clean": "rm -rf dist",
-        "build": "yarn clean && tsc -p tsconfig.json && echo '{\"type\": \"commonjs\"}' > dist/package.json && cat src/index.d.ts >> dist/index.d.ts"
+        "build": "yarn clean && tsc -p tsconfig.json && tsc -p tsconfig.vite.json && echo '{\"type\": \"commonjs\"}' > dist/package.json && cat src/index.d.ts >> dist/index.d.ts"
     },
     "dependencies": {
         "cbor": "^10.0.12",
@@ -27,7 +32,9 @@
     "devDependencies": {
         "@types/fs-extra": "^11.0.4",
         "@types/node": "^22.19.1",
-        "typescript": "^5.9.3"
+        "typescript": "^5.9.3",
+        "electron": "39.2.6",
+        "vite": "^7.2.6"
     },
     "peerDependencies": {
         "cbor": "*",
@@ -36,10 +43,5 @@
         "ofetch": "*",
         "typescript": "*",
         "vite": "*"
-    },
-    "peerDependenciesMeta": {
-        "electron": {
-            "optional": true
-        }
     }
 }
