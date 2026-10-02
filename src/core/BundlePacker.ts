@@ -94,7 +94,7 @@ export function unpack({ name, key }: BundleUnPackOptions) {
 /**
  * Vite 渲染进程文件打包加密
  */
-export function VitePluginBundlePack(options: BundlePackOptions): Plugin {
+export function VitePluginBundlePack(options?: BundlePackOptions): Plugin {
     let viteConfig: ResolvedConfig;
     return {
         name: 'vite-plugin-bundle-pack',
@@ -103,8 +103,8 @@ export function VitePluginBundlePack(options: BundlePackOptions): Plugin {
             viteConfig = resolvedConfig
         },
         closeBundle() {
-            const packName = viteConfig.env.VITE_PACK_NAME ?? options.name ?? 'app.bin';
-            const bundleKey = viteConfig.env.VITE_PACK_KEY ?? options.key;
+            const packName = viteConfig.env.VITE_PACK_NAME ?? options?.name ?? 'app.bin';
+            const bundleKey = viteConfig.env.VITE_PACK_KEY ?? options?.key;
             if (!bundleKey) {
                 throw new Error('bundleKey is required');
             }

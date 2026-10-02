@@ -20,4 +20,4 @@ export declare function unpack({ name, key }: BundleUnPackOptions): fflate.Unzip
 /**
  * Vite 渲染进程文件打包加密
  */
-export declare function VitePluginBundlePack(options: BundlePackOptions): Plugin;
+export declare function VitePluginBundlePack(options?: BundlePackOptions): Plugin;

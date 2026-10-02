@@ -91,8 +91,8 @@ function VitePluginBundlePack(options) {
             viteConfig = resolvedConfig;
         },
         closeBundle() {
-            const packName = viteConfig.env.VITE_PACK_NAME ?? options.name ?? 'app.bin';
-            const bundleKey = viteConfig.env.VITE_PACK_KEY ?? options.key;
+            const packName = viteConfig.env.VITE_PACK_NAME ?? options?.name ?? 'app.bin';
+            const bundleKey = viteConfig.env.VITE_PACK_KEY ?? options?.key;
             if (!bundleKey) {
                 throw new Error('bundleKey is required');
             }
