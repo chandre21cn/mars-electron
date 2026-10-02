@@ -23,7 +23,7 @@ function findAllFiles(dirPath: string, basePath: string = dirPath, fileMap: Reco
         if (ent.isDirectory()) {
             findAllFiles(fullPath, basePath, fileMap)
         } else  {
-            let key = path.relative(dirPath, fullPath).replace(/\\/g, '/');
+            let key = path.relative(basePath, fullPath).replace(/\\/g, '/');
             fileMap[key] = fullPath
         }
     }

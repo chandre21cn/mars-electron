@@ -21,7 +21,7 @@ function findAllFiles(dirPath, basePath = dirPath, fileMap = {}) {
             findAllFiles(fullPath, basePath, fileMap);
         }
         else {
-            let key = path_1.default.relative(dirPath, fullPath).replace(/\\/g, '/');
+            let key = path_1.default.relative(basePath, fullPath).replace(/\\/g, '/');
             fileMap[key] = fullPath;
         }
     }
