@@ -36,5 +36,10 @@
         "ofetch": "*",
         "typescript": "*",
         "vite": "*"
+    },
+    "peerDependenciesMeta": {
+        "electron": {
+            "optional": true
+        }
     }
 }
