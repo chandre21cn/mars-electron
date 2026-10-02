@@ -71,7 +71,7 @@ export function VitePluginBundlePack(options?: BundlePackOptions): Plugin {
             if (!bundleKey) {
                 throw new Error('bundleKey is required');
             }
-            const distPath = viteConfig.root
+            const distPath = viteConfig.build.outDir
             console.log(`[pack] 正在打包并加密资源包`);
             const files = findAllFiles(distPath)
             const fileBuffer = compress(files, Buffer.from(bundleKey, 'base64'))
