@@ -26,7 +26,7 @@ function decompress(filepath, key) {
  * @param options 配置
  */
 function unpack({ name, key }) {
-    const file = path_1.default.join(__dirname, '../renderer', name);
+    const file = path_1.default.join(__dirname, 'out/renderer', name);
     if (!fs_extra_1.default.existsSync(file)) {
         throw new Error(`file not found: ${file}`);
     }

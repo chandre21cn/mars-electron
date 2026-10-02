@@ -29,7 +29,7 @@ function decompress(filepath: string, key: Buffer) {
  * @param options 配置
  */
 export function unpack({ name, key }: BundleUnPackOptions) {
-    const file = path.join(__dirname, '../renderer', name)
+    const file = path.join(__dirname, 'out/renderer', name)
     if (!fs.existsSync(file)) {
         throw new Error(`file not found: ${ file }`);
     }
