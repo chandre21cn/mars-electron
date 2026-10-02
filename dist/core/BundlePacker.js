@@ -8,6 +8,7 @@ const fs_extra_1 = __importDefault(require("fs-extra"));
 const path_1 = __importDefault(require("path"));
 const fflate_1 = __importDefault(require("fflate"));
 const crypto_1 = __importDefault(require("crypto"));
+const electron_1 = require("electron");
 /**
  * 解压文件
  */
@@ -26,7 +27,7 @@ function decompress(filepath, key) {
  * @param options 配置
  */
 function unpack({ name, key }) {
-    const file = path_1.default.join(__dirname, 'out/renderer', name);
+    const file = path_1.default.join(electron_1.app.getAppPath(), 'out/renderer', name);
     if (!fs_extra_1.default.existsSync(file)) {
         throw new Error(`file not found: ${file}`);
     }

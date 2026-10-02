@@ -2,6 +2,7 @@ import fs from 'fs-extra'
 import path from 'path'
 import fflate from 'fflate'
 import crypto from 'crypto'
+import { app } from 'electron';
 
 export interface BundleUnPackOptions {
     /** 资源包文件名 */
@@ -29,7 +30,7 @@ function decompress(filepath: string, key: Buffer) {
  * @param options 配置
  */
 export function unpack({ name, key }: BundleUnPackOptions) {
-    const file = path.join(__dirname, 'out/renderer', name)
+    const file = path.join(app.getAppPath(), 'out/renderer', name)
     if (!fs.existsSync(file)) {
         throw new Error(`file not found: ${ file }`);
     }
