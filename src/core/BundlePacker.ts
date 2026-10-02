@@ -43,18 +43,22 @@ function findAllFiles(dirPath: string, fileMap: Record<string, string> = {}) {
  * @param key 密钥
  */
 function compress(fileMap: Record<string, string>, key: string): Buffer {
-    const zipInput = {}
-    for (const [key, filePath] of Object.entries(fileMap)) {
-        zipInput[key] = fs.readFileSync(filePath)
+    try {
+        const zipInput = {}
+        for (const [key, filePath] of Object.entries(fileMap)) {
+            zipInput[key] = fs.readFileSync(filePath)
+        }
+        const zipped = fflate.zipSync(zipInput, { level: 9 })
+
+        const iv = crypto.randomBytes(12)
+        const cipher = crypto.createCipheriv('aes-256-gcm', key, iv)
+        const encrypted = Buffer.concat([cipher.update(zipped), cipher.final() ])
+        const authTag = cipher.getAuthTag()
+
+        return Buffer.concat([iv, authTag, encrypted]);
+    } catch(error: any) {
+        throw new Error(`资源包打包失败: ${ error.message }`)
     }
-    const zipped = fflate.zipSync(zipInput, { level: 9 })
-
-    const iv = crypto.randomBytes(12)
-    const cipher = crypto.createCipheriv('aes-256-gcm', key, iv)
-    const encrypted = Buffer.concat([cipher.update(zipped), cipher.final() ])
-    const authTag = cipher.getAuthTag()
-
-    return Buffer.concat([iv, authTag, encrypted]);
 }
 
 /**
@@ -73,14 +77,18 @@ function decompress(filepath: string, key: string) {
 
 /**
  * 解包
- * @param options 配置选项
+ * @param options 配置
  */
 export function unpack({ name, key }: BundleUnPackOptions) {
     const file = path.join(__dirname, '../renderer', name)
     if (!fs.existsSync(file)) {
         throw new Error(`file not found: ${ file }`);
     }
-    return decompress(file, key)
+    try {
+        return decompress(file, key)
+    } catch(error) {
+        throw new Error(`资源包解码失败`)
+    }
 }
 
 /**
