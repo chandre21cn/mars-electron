@@ -13,12 +13,12 @@ const crypto_1 = __importDefault(require("crypto"));
  * @param dir 目录路径
  * @param fileMap 文件列表
  */
-function findAllFiles(dirPath, fileMap = {}) {
+function findAllFiles(dirPath, basePath = dirPath, fileMap = {}) {
     const files = fs_extra_1.default.readdirSync(dirPath, { withFileTypes: true });
     for (const ent of files) {
         const fullPath = path_1.default.join(dirPath, ent.name);
         if (ent.isDirectory()) {
-            findAllFiles(fullPath, fileMap);
+            findAllFiles(fullPath, basePath, fileMap);
         }
         else {
             let key = path_1.default.relative(dirPath, fullPath).replace(/\\/g, '/');

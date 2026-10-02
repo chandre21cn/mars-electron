@@ -16,12 +16,12 @@ export interface BundlePackOptions {
  * @param dir 目录路径
  * @param fileMap 文件列表 
  */
-function findAllFiles(dirPath: string, fileMap: Record<string, string> = {}) {
+function findAllFiles(dirPath: string, basePath: string = dirPath, fileMap: Record<string, string> = {}) {
     const files = fs.readdirSync(dirPath, { withFileTypes: true });
     for (const ent of files) {
         const fullPath = path.join(dirPath, ent.name);
         if (ent.isDirectory()) {
-            findAllFiles(fullPath, fileMap)
+            findAllFiles(fullPath, basePath, fileMap)
         } else  {
             let key = path.relative(dirPath, fullPath).replace(/\\/g, '/');
             fileMap[key] = fullPath
