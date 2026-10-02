@@ -27,7 +27,7 @@
     "devDependencies": {
         "@types/fs-extra": "^11.0.4",
         "@types/node": "^22.19.1",
-        "electron": "*",
+        "electron": "39.2.6",
         "typescript": "^5.9.3",
         "vite": "*"
     },
