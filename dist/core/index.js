@@ -20,3 +20,4 @@ __exportStar(require("./BaseWindow"), exports);
 __exportStar(require("./Controller"), exports);
 __exportStar(require("./Service"), exports);
 __exportStar(require("./WindowManager"), exports);
+__exportStar(require("./BundlePacker"), exports);

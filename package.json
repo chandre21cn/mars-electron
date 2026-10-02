@@ -18,21 +18,24 @@
     "dependencies": {
         "cbor": "^10.0.12",
         "dayjs": "^1.11.20",
+        "fflate": "^0.8.3",
         "fs-extra": "^11.3.5",
         "node-cron": "^4.2.1",
         "ofetch": "^1.5.1",
         "reflect-metadata": "^0.2.2"
     },
     "devDependencies": {
-        "electron": "*",
+        "@types/fs-extra": "^11.0.4",
         "@types/node": "^22.19.1",
-        "typescript": "^5.9.3"
+        "electron": "*",
+        "typescript": "^5.9.3",
+        "vite": "*"
     },
     "peerDependencies": {
-        "electron": "*",
-        "typescript": "*",
         "cbor": "*",
         "dayjs": "*",
-        "ofetch": "*"
+        "electron": "*",
+        "ofetch": "*",
+        "typescript": "*"
     }
 }
